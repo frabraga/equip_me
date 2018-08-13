@@ -1,2 +1,9 @@
-<h1>Equipments#index</h1>
-<p>Find me in app/views/equipments/index.html.erb</p>
+<h1>All our fucking equipment bitches!!!</h1>
+
+<ul>
+  <% @equipments.each do |equipment| %>
+  <li><%= equipment.name %></li>
+  <li><%= equipment.description %></li>
+  <li><%= equipment.price %></li>
+  <% end %>
+</ul>

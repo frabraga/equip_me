@@ -2,7 +2,7 @@ class EquipmentsController < ApplicationController
   before_action :set_equipment, only: [:show, :edit, :destroy]
 
   def index
-    @equipment = Equipment.all
+    @equipments = Equipment.all
   end
 
   def show
