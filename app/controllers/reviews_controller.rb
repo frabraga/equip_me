@@ -9,7 +9,7 @@ before_action :set_booking
     @review = Review.new(review_params)
     @review.booking = set_booking
     if @review.save
-      redirect_to @review
+      redirect_to @booking
     else
       render :new
     end
