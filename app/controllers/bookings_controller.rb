@@ -7,12 +7,21 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    authorize @booking
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
+    @booking.user = current_user
+    @booking.equipment = Equipment.find(params[:equipment_id])
+    authorize @booking
     if @booking.save
-      redirect_to @booking
+      redirect_to @booking.equipment
     else
       render :new
     end
