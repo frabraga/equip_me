@@ -1,0 +1,9 @@
+<h1><%= @booking.equipment.name %></h1>
+
+<ul>
+  <li><%= @booking.start_date %></li>
+  <li><%= @booking.end_date %></li>
+  <li><%= @booking.equipment.price %></li>
+  <li>Price is: <%= @booking.equipment.price * (@booking.end_date.day - @booking.start_date.day) %></li>
+</ul>
+
