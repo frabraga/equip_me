@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  root to: 'equipments#index'
+
   resources :bookings do
-    resources :reviews, only [ :new, :create ]
+    resources :reviews, only: [ :new, :create ]
   end
 
 
