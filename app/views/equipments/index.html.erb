@@ -1,7 +1,7 @@
 <%= render 'shared/banner' %>
 <h1>All our fucking equipment bitches!!!</h1>
-
-<ul>
+<%= cl_image_tag("inx09ntbrlvppdogf4ue",
+      width: 400, height: 300, crop: :fill) %><ul>
   <% @equipments.each do |equipment| %>
   <li><%= equipment.name %></li>
   <li><%= equipment.description %></li>
