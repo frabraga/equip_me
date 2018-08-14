@@ -42,6 +42,7 @@ end
 50.times do
   review = Review.new(
     description: Faker::StarWars.wookiee_sentence,
+    rating: rand(0..5),
     booking_id: rand(1..30)
   )
 end
