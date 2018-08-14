@@ -1,5 +1,3 @@
-require 'faker'
-
 puts "destroying all fucks"
 Equipment.destroy_all
 User.destroy_all
@@ -7,16 +5,6 @@ Booking.destroy_all
 Review.destroy_all
 
 puts "adding all fucks"
-
-100.times do
-  equipment = Equipment.new(
-    name: Faker::Pokemon.move,
-    description: Faker::StarWars.quote,
-    price: rand(50..500),
-    user_id: rand(1..10)
-  )
-  equipment.save!
-end
 
 10.times do
   user = User.new(
@@ -27,6 +15,16 @@ end
     password: "123456"
   )
   user.save!
+end
+
+100.times do
+  equipment = Equipment.new(
+    name: Faker::Pokemon.move,
+    description: Faker::StarWars.quote,
+    price: rand(50..500),
+    user_id: rand(1..10)
+  )
+  equipment.save!
 end
 
 30.times do
