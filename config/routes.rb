@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'reviews/new'
-  get 'reviews/create'
-  get 'reviews/destroy'
-  root to: 'equipments#index'
+  resources :bookings do
+    resources :reviews, only [ :new, :create ]
+  end
+
 
   resources :equipments
   devise_for :users
