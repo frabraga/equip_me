@@ -1,2 +1,12 @@
-<h1>Equipments#new</h1>
-<p>Find me in app/views/equipments/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h3>New Equipment Listing</h1>
+      <%= render 'form', equipment: @equipment %>
+      <br>
+      <%= link_to 'Back', root_path %>
+    </div>
+  </div>
+</div>
+
+
