@@ -7,6 +7,14 @@ class EquipmentPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    true
+  end
+
+  def create?
+    record.user == user
+  end
+
   class Scope < Scope
     def resolve
       scope.all

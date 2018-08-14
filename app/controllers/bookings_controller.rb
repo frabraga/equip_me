@@ -1,4 +1,10 @@
 class BookingsController < ApplicationController
+
+  def index
+    @bookings = Booking.all
+    @bookings = policy_scope(Booking).where(user_id: current_user.id)
+  end
+
   def new
     @booking = Booking.new
   end
@@ -15,6 +21,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:user_id, :equipment:id, :start_date, :end_date)
+    params.require(:booking).permit(:user_id, :equipment_id, :start_date, :end_date)
   end
 end
