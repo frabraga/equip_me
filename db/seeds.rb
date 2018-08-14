@@ -1,5 +1,3 @@
-require 'faker'
-
 puts "destroying all fucks"
 Equipment.destroy_all
 User.destroy_all
