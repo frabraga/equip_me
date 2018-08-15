@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
     @booking.equipment = Equipment.find(params[:equipment_id])
     authorize @booking
     if @booking.save
-      redirect_to @booking.equipment
+      redirect_to bookings_path
     else
       render :new
     end
