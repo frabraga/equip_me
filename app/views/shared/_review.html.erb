@@ -1,0 +1,9 @@
+<ul>
+  <% @equipment.reviews.each do |review| %>
+  <li>
+    <h3><%= review.description %></h3>
+    <p><%= '*' * review.rating %></p>
+    <p>- <%= @equipment.user.first_name %></p>
+  </li>
+  <% end %>
+</ul>

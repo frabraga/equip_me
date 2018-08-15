@@ -8,9 +8,9 @@ puts "adding all fucks"
 
 10.times do
   user = User.new(
-    first_name: Faker::StarWars.specie,
-    last_name: Faker::StarWars.planet,
-    address: Faker::RockBand.name,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    address: Faker::Address.street_address,
     email: Faker::Internet.email,
     password: "123456"
   )
@@ -35,13 +35,61 @@ photos = [
 "https://res.cloudinary.com/djjncf5oe/image/upload/v1534344731/mgxhkie9neavspdjvm5k.jpg"
 ]
 
+sports = [
+"kite surfing",
+"wake boarding",
+"snow boarding",
+"skiing",
+"surfing",
+"football",
+"baseball",
+"golf",
+"water polo",
+"real polo",
+"paragliding",
+"luging",
+"horseing around",
+"cricket",
+"croquet",
+"conkers",
+"tennis",
+"ping pong",
+"badminton",
+"basketball",
+"hockey"
+]
+
+equipment = [
+"bat",
+"skis",
+"racket",
+"armour",
+"horse",
+"boat",
+"oars",
+"snowboard",
+"skateboard",
+"kite",
+"ball"
+"baseball"
+"basketball"
+"shuttlecock",
+"ping pong ball",
+"jacket",
+"pants",
+"wingsuit",
+"clubs",
+"canoe",
+"paddle board"
+]
+
 10.times do
   equipment = Equipment.new(
-    name: Faker::Pokemon.move,
-    description: Faker::StarWars.quote,
+    name: equipment.sample,
+    description: Faker::Lorem.paragraphs,
     price: rand(50..500),
     user_id: rand(1..10),
-    category: Faker::Esport.game,
+    category: sports.sample,
     remote_photo_url: photos.sample
   )
   equipment.save!
@@ -59,7 +107,7 @@ end
 
 30.times do
   review = Review.new(
-    description: Faker::StarWars.wookiee_sentence,
+    description: Faker::Lorem.paragraphs(1),
     rating: rand(0..5),
     booking_id: rand(1..15)
   )
