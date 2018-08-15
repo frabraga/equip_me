@@ -1,16 +1,32 @@
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-6" id="firstcol">
-          <img src="<%= cl_image_path (@equipment.photo || ''), crop: :fill %>" alt="" width="350px" >
+        <div class="col-xs-12 col-md-6" id="firstcol">
+          <img src="<%= cl_image_path @equipment.photo, crop: :fill %>" alt="" width="350px" class="img-show">
         </div>
-        <div class="col-xs-12 col-sm-6" id="secondcol">
+        <div class="col-xs-12 col-md-6" id="secondcol">
           <h3 class="equip-name"><%= @equipment.name %></h3>
           <p><%= @equipment.description %></p>
           <p>$<%= @equipment.price %> per day</p>
         </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+          <%= render './bookings/form', equipment: [@equipment, @booking] unless @equipment.user_id == current_user.id %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <ul class="list-group">
+          <% @equipment.reviews.each do |review| %>
+          <li class="list-group-item">
+            <p><strong><%= review.description %></strong></p>
+            <p><%= '*' * review.rating %></p>
+            <p>- <%= review.booking.user.first_name %></p>
+          </li>
+          <% end %>
+        </ul>
+        </div>
+        </div>
       </div>
     </div>
 
-    <%= render './bookings/form', equipment: [@equipment, @booking] %>
+
 
 

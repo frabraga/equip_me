@@ -2,11 +2,36 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
+<% sports = [
+"kite surfing",
+"wake boarding",
+"snow boarding",
+"skiing",
+"surfing",
+"football",
+"baseball",
+"golf",
+"water polo",
+"real polo",
+"paragliding",
+"luging",
+"horseing around",
+"cricket",
+"croquet",
+"conkers",
+"tennis",
+"ping pong",
+"badminton",
+"basketball",
+"hockey"
+] %>
+
   <div class="form-inputs">
     <%= f.input :name, placeholder: "Kitesurf" %>
     <%= f.input :description, placeholder: "Most badass Kitesurf ever"  %>
     <%= f.input :price, placeholder: "150"  %>
-    <%= f.input :category, placeholder: "Kiting"  %>
+    <%= f.label :category %>
+    <%= f.select :category, sports %>
     <%= f.input :photo %>
     <%= f.input :photo_cache, as: :hidden %>
   </div>
