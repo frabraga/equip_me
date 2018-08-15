@@ -1,9 +1,18 @@
-<h1>Your Bookings</h1>
-
-<ul>
-  <% @bookings.each do |booking| %>
-    <li><%= booking.equipment.name %></li>
-    <li><%= booking.start_date %></li>
-    <li><%= booking.end_date %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1>Your Bookings</h1>
+  <div class="row">
+    <% @bookings.each do |booking| %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path(booking.equipment.photo) %>);">
+      <div class="card-category"><%= booking.equipment.name %></div>
+      <div class="card-description">
+        <h2>Full price: €<%= booking.equipment.price * (booking.end_date.day - booking.start_date.day) %> (€<%= booking.equipment.price %>/day)</h2>
+        <p><%= booking.start_date.strftime("%d-%m-%Y") %> | <%= booking.end_date.strftime("%d-%m-%Y") %></p>
+      </div>
+      <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
+      <a class="card-link" href="#" ></a>
+    </div>
+    </div>
+    <% end %>
+  </div>
+</div>

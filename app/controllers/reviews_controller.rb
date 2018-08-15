@@ -30,4 +30,5 @@ before_action :set_booking
 
   def review_params
     params.require(:review).permit(:booking_id, :description, :rating)
+  end
 end
