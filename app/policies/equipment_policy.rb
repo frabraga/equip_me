@@ -15,6 +15,10 @@ class EquipmentPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def list?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.all
