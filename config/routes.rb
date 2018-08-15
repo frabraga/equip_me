@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root to: 'equipments#index'
 
   resources :equipments do
+    collection do
+      get 'list'
+    end
     resources :bookings, only: [:new, :create, :show]
   end
 
