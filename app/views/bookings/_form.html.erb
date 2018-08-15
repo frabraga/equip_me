@@ -1,4 +1,4 @@
-<h3>New Booking</h3>
+<h3 class="book-title">New Booking</h3>
 
 <%= simple_form_for [@equipment, @booking] do |f| %>
   <%= f.error_notification %>
@@ -10,6 +10,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => "btn btn-danger" %>
   </div>
 <% end %>

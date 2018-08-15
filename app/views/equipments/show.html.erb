@@ -1,14 +1,12 @@
 <div class="grid">
       <div class="card main">
         <div class="card-content">
-          <img src="<%= cl_image_path @equipment.photo, crop: :fill %>" alt="" width="250" >
-          <!-- <p></p>
-          <a href="#" class="btn btn-primary btn-lg">book</a> -->
+          <img src="<%= cl_image_path @equipment.photo, crop: :fill %>" alt="" width="550" >
         </div>
       </div>
       <div class="card about">
         <div class="card-content">
-          <h3><%= @equipment.name %></h3>
+          <h3 class="equip-name"><%= @equipment.name %></h3>
           <p class="text-justify">
             <%= @equipment.description %>
           </p>
