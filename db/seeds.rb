@@ -59,7 +59,7 @@ sports = [
 "hockey"
 ]
 
-equipment = [
+stuff = [
 "bat",
 "skis",
 "racket",
@@ -70,9 +70,9 @@ equipment = [
 "snowboard",
 "skateboard",
 "kite",
-"ball"
-"baseball"
-"basketball"
+"ball",
+"baseball",
+"basketball",
 "shuttlecock",
 "ping pong ball",
 "jacket",
@@ -85,8 +85,8 @@ equipment = [
 
 10.times do
   equipment = Equipment.new(
-    name: equipment.sample,
-    description: Faker::Lorem.paragraphs,
+    name: stuff.sample,
+    description: Faker::Lorem.paragraph_by_chars(256, false),
     price: rand(50..500),
     user_id: rand(1..10),
     category: sports.sample,
@@ -107,7 +107,7 @@ end
 
 30.times do
   review = Review.new(
-    description: Faker::Lorem.paragraphs(1),
+    description: Faker::Lorem.paragraph_by_chars(80, false),
     rating: rand(0..5),
     booking_id: rand(1..15)
   )
