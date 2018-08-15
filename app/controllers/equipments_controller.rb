@@ -28,6 +28,11 @@ class EquipmentsController < ApplicationController
     end
   end
 
+  def list
+    @equipments = policy_scope(Equipment).order(created_at: :desc).where(user_id: current_user.id)
+    authorize @equipments
+  end
+
   def edit
   end
 
