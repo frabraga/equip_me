@@ -63,6 +63,7 @@ end
     rating: rand(0..5),
     booking_id: rand(1..15)
   )
+  review.save!
 end
 
 puts "completed the fuckening"
