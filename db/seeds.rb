@@ -18,11 +18,14 @@ puts "adding all fucks"
 end
 
 100.times do
+  test_num = rand(1..500)
   equipment = Equipment.new(
     name: Faker::Pokemon.move,
     description: Faker::StarWars.quote,
     price: rand(50..500),
-    user_id: rand(1..10)
+    user_id: rand(1..10),
+    category: Faker::Esport.game,
+    photo: "https://picsum.photos/200/300/?image=#{test_num}"
   )
   equipment.save!
 end

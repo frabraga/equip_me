@@ -1,10 +1,5 @@
 <%= render 'shared/banner' %>
-<h1>All our fucking equipment bitches!!!</h1>
-<%= cl_image_tag("inx09ntbrlvppdogf4ue",
-      width: 400, height: 300, crop: :fill) %><ul>
-  <% @equipments.each do |equipment| %>
-  <li><%= link_to equipment.name, equipment %></li>
-  <% end %>
-</ul>
+
+<%= render 'shared/card', @equipment %>
 
 <%= link_to 'new equipment', new_equipment_path %>
