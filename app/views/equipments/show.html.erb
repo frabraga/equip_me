@@ -8,5 +8,5 @@
 </ul>
 
 
-<%= render './bookings/form', equipment: [@equipment, @booking] %>
+<%= render './bookings/form', equipment: [@equipment, @booking] unless @equipment.user_id == current_user.id %>
 
