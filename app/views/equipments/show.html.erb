@@ -1,12 +1,16 @@
-<%= cl_image_tag @equipment.photo, height: 300, width: 400, crop: :fill %>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6" id="firstcol">
+          <img src="<%= cl_image_path @equipment.photo, crop: :fill %>" alt="" width="350px" >
+        </div>
+        <div class="col-xs-12 col-sm-6" id="secondcol">
+          <h3 class="equip-name"><%= @equipment.name %></h3>
+          <p><%= @equipment.description %></p>
+          <p>$<%= @equipment.price %> per day</p>
+        </div>
+      </div>
+    </div>
 
-<h1><%= @equipment.name %></h1>
+    <%= render './bookings/form', equipment: [@equipment, @booking] %>
 
-<ul>
-  <li><%= @equipment.description %></li>
-  <li><%= @equipment.price %></li>
-</ul>
-
-
-<%= render './bookings/form', equipment: [@equipment, @booking] unless @equipment.user_id == current_user.id %>
 
