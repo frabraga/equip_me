@@ -4,5 +4,5 @@ class Booking < ApplicationRecord
 
   validates :user_id, presence: true
   validates :equipment_id, presence: true
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 end
