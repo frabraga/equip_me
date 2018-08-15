@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row">
+    <% @equipments.each do |equipment| %>
     <div class="col-xs-12 col-sm-4">
-      <% @equipments.each do |equipment| %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path(equipment.photo) %>);">
         <div class="card-category"><%= equipment.category %></div>
         <div class="card-description">
-          <h2><%= equipment.name %></h2>
-          <p><%= equipment.description %></p>
+          <h2><%= equipment.name %> | € <%= equipment.price %></h2>
+          <p><%= equipment.description.truncate(45) %></p>
         </div>
         <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
         <%= link_to equipment.name, equipment, class: "card-link" %>
       </div>
     </div>
+    <% end %>
   </div>
 </div>

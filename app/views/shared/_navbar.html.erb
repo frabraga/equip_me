@@ -11,6 +11,7 @@
 
       <!-- Links when logged in -->
       <%= link_to "My Bookings", bookings_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to 'Add new equipment', new_equipment_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "logged in as: #{current_user.first_name}", bookings_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" -->
 
