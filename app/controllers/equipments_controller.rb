@@ -3,29 +3,14 @@ class EquipmentsController < ApplicationController
   before_action :set_equipment, only: [:show, :edit, :destroy]
 
   def index
-    @equipments = Equipment.all
-    # @equipments.ratings
-    # @rating_by_equip = {}
-    # @equipments.each do |eq|
-    #   count = 0
-    #   @rating_by_equip[eq.id] ||= 0
-    #   eq.bookings.each do |b|
-    #     b.reviews.each do |r|
-    #       @rating_by_equip[eq.id] += r.rating
-    #       count += 1
+    if params[:query].present?
+      @equipments = Equipment.search(params[:query])
+    else
+      @equipments = Equipment.all
+    end
 
-    #       # @rating_by_equip[eq.id] ||= {}
-    #       # @rating_by_equip[eq.id][:rating] ||= 0
-    #       # @rating_by_equip[eq.id][:rating] += 1
-
-    #       # @rating_by_equip[eq.id][:count] ||= 0
-    #       # @rating_by_equip[eq.id][:count] += 1
-
-    #     end
-    #   end
-    #   @rating_by_equip[eq.id] / count unless count == 0
-    # end
-    @equipments = policy_scope(Equipment).order(created_at: :desc)
+    #@equipments = policy_scope(Equipment).order(created_at: :desc)
+    #@equipments = EquipmentPolicy::Scope.new(current_user, Equipment).abc(params[:query])
   end
 
   def show
@@ -64,6 +49,12 @@ class EquipmentsController < ApplicationController
     authorize @equipment
     @equipment.destroy
     redirect_to list_equipments_path
+  end
+
+  protected
+
+  def skip_pundit?
+    controller_path == "equipments"
   end
 
   private
