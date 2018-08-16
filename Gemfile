@@ -20,6 +20,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'pundit'
 gem 'faker'
+gem "algoliasearch-rails"
+gem 'will_paginate'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

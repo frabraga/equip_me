@@ -1,13 +1,25 @@
 <div class="container">
-  <h1>Your Bookings</h1>
-  <div class="row">
+  <h1 class="text-center">Your Bookings</h1>
+  <div class="row extra-space">
     <% @bookings.each do |booking| %>
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path(booking.equipment.photo) %>);">
-      <div class="card-category"><%= booking.equipment.name %></div>
+      <div class="card-category"><%= booking.equipment.name %>
+        <br>
+        <% rating = 0 %>
+        <% count = 0 %>
+        <% booking.reviews.each do |r| %>
+          <% rating += r.rating %>
+          <% count += 1 %>
+        <% end %>
+        <% rating = rating / count unless count == 0 %>
+        <%= '*' * rating %>
+      </div>
+      <div class="card-category">
+      </div>
       <div class="card-description">
         <h2>Full price: €<%= booking.equipment.price * (booking.end_date.day - booking.start_date.day) %> (€<%= booking.equipment.price %>/day)</h2>
-        <p><%= booking.start_date.strftime("%d-%m-%Y") %> | <%= booking.end_date.strftime("%d-%m-%Y") %></p>
+        <p><strong><%= booking.start_date.strftime("%d-%m-%Y") %> | <%= booking.end_date.strftime("%d-%m-%Y") %></strong></p>
       </div>
       <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
        <%= link_to booking.user_id, equipment_booking_path(booking.equipment, booking), class: "card-link" %>

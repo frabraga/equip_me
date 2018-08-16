@@ -2,6 +2,13 @@
   <div class="banner-content">
     <h1>Equip your trip</h1>
     <p>Fun, only a few clicks away</p>
+    <%= form_tag root_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find an equipment"
+      %>
+    <% end %>
     <!-- <a class="btn btn-primary btn-lg">Future search bar</a> -->
   </div>
 </div>
