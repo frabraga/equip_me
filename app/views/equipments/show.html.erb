@@ -7,22 +7,29 @@
           <h3 class="equip-name"><%= @equipment.name %></h3>
           <p><%= @equipment.description %></p>
           <p>$<%= @equipment.price %> per day</p>
+          <% if @equipment.user_id == current_user.id %>
+          <div class="link">
+            <%= link_to "Delete this equipment", equipment_path,
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+          </div>
+          <% end %>
         </div>
         <div class="row">
           <div class="col-xs-12 col-md-6">
-          <%= render './bookings/form', equipment: [@equipment, @booking] unless @equipment.user_id == current_user.id %>
-        </div>
-        <div class="col-xs-12 col-md-6">
-          <ul class="list-group">
-          <% @equipment.reviews.each do |review| %>
-          <li class="list-group-item">
-            <p><strong><%= review.description %></strong></p>
-            <p>Rating: <%= '*' * review.rating %></p>
-            <p>- <%= review.booking.user.first_name %></p>
-          </li>
-          <% end %>
-        </ul>
-        </div>
+            <%= render './bookings/form', equipment: [@equipment, @booking] unless @equipment.user_id == current_user.id %>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <ul class="list-group">
+              <% @equipment.reviews.each do |review| %>
+              <li class="list-group-item">
+                <p><strong><%= review.description %></strong></p>
+                <p>Rating: <%= '*' * review.rating %></p>
+                <p>- <%= review.booking.user.first_name %></p>
+              </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
