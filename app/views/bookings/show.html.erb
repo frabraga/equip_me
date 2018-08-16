@@ -1,9 +1,21 @@
-<h1><%= @booking.equipment.name %></h1>
-
-<ul>
-  <li><%= @booking.start_date %></li>
-  <li><%= @booking.end_date %></li>
-  <li><%= @booking.equipment.price %></li>
-  <li>Price is: <%= @booking.equipment.price * (@booking.end_date.day - @booking.start_date.day) %></li>
-</ul>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6" id="firstcol">
+      <img src="<%= cl_image_path @booking.equipment.photo, crop: :fill %>" alt="" width="350px" class="img-show">
+    </div>
+    <div class="col-xs-12 col-md-6" id="secondcol">
+      <h1 class="booking_details">Booking Details</h1>
+      <div class="details_content">
+      <h3 class="equip-name"><%= @booking.equipment.name %></h3>
+      <p><strong>Booking start date: </strong><%= @booking.start_date %></p>
+      <p><strong>Price per day: </strong>$<%= @booking.equipment.price %></p>
+      <p><strong>Total price is: </strong>$<%= @booking.equipment.price * (@booking.end_date.day - @booking.start_date.day) %></p>
+      <div class="link">
+        <%= link_to "Delete this booking", booking_path,
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
