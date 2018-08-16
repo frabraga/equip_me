@@ -8,8 +8,10 @@ before_action :set_booking
   def create
     @review = Review.new(review_params)
     @review.booking = set_booking
+    @booking = set_booking
+    authorize @review
     if @review.save
-      redirect_to @booking
+      redirect_to bookings_path
     else
       render :new
     end
@@ -25,7 +27,7 @@ before_action :set_booking
   private
 
   def set_booking
-    Booking.find(params[:booking_id])
+    Booking.find_by(id: params[:booking_id])
   end
 
   def review_params

@@ -13,6 +13,7 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @equipment = Equipment.find_by(id: params[:id])
+    @review = Review.new
     authorize @booking
   end
 
