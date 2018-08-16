@@ -13,12 +13,10 @@ class Equipment < ApplicationRecord
 
 
   algoliasearch do
-    attribute :name, :description
+    attribute :name, :description, :category
     searchableAttributes ['name', 'unordered(description)']
     customRanking ['desc(likes_count)']
   end
-
-   Equipment.reindex
 
   def rating
     rating = 0
