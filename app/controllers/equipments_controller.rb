@@ -3,8 +3,14 @@ class EquipmentsController < ApplicationController
   before_action :set_equipment, only: [:show, :edit, :destroy]
 
   def index
-    @equipments = Equipment.all
-    @equipments = policy_scope(Equipment).order(created_at: :desc)
+    if params[:query].present?
+      @equipments = Equipment.search(params[:query])
+    else
+      @equipments = Equipment.all
+    end
+
+    #@equipments = policy_scope(Equipment).order(created_at: :desc)
+    #@equipments = EquipmentPolicy::Scope.new(current_user, Equipment).abc(params[:query])
   end
 
   def show
@@ -40,6 +46,12 @@ class EquipmentsController < ApplicationController
   end
 
   def destroy
+  end
+
+  protected
+
+  def skip_pundit?
+    controller_path == "equipments"
   end
 
   private
