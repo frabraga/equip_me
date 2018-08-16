@@ -16,6 +16,15 @@
         data: { confirm: "Are you sure?" } %>
       </div>
       <% end %>
+      <% if current_user.nil? %>
+
+      <% elsif @equipment.user_id == current_user.id %>
+      <div class="link">
+        <%= link_to "Edit this equipment", edit_equipment_path,
+        method: :get,
+        data: { confirm: "Are you sure?" } %>
+      </div>
+      <% end %>
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-6">
