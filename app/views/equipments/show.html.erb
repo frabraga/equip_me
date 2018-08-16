@@ -1,40 +1,40 @@
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-md-6" id="firstcol">
-          <img src="<%= cl_image_path @equipment.photo, crop: :fill %>" alt="" width="350px" class="img-show">
-        </div>
-        <div class="col-xs-12 col-md-6" id="secondcol">
-          <h3 class="equip-name"><%= @equipment.name %></h3>
-          <p><%= @equipment.description %></p>
-          <p>$<%= @equipment.price %> per day</p>
-          <% if current_user.nil? %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6" id="firstcol">
+      <img src="<%= cl_image_path @equipment.photo, crop: :fill %>" alt="" width="350px" class="img-show">
+    </div>
+    <div class="col-xs-12 col-md-6" id="secondcol">
+      <h3 class="equip-name"><%= @equipment.name %></h3>
+      <p><%= @equipment.description %></p>
+      <p>$<%= @equipment.price %> per day</p>
+      <% if current_user.nil? %>
 
-          <% elsif @equipment.user_id == current_user.id %>
-          <div class="link">
-            <%= link_to "Delete this equipment", equipment_path,
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
-          </div>
+      <% elsif @equipment.user_id == current_user.id %>
+      <div class="link">
+        <%= link_to "Delete this equipment", equipment_path,
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
+      </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <%= render './bookings/form', equipment: [@equipment, @booking] unless current_user.nil? || @equipment.user_id == current_user.id %>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <ul class="list-group">
+          <% @equipment.reviews.each do |review| %>
+          <li class="list-group-item">
+            <p><strong><%= review.description %></strong></p>
+            <p>Rating: <%= '*' * review.rating %></p>
+            <p>- <%= review.booking.user.first_name %></p>
+          </li>
           <% end %>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-md-6">
-            <%= render './bookings/form', equipment: [@equipment, @booking] unless current_user.nil? || @equipment.user_id == current_user.id %>
-          </div>
-          <div class="col-xs-12 col-md-6">
-            <ul class="list-group">
-              <% @equipment.reviews.each do |review| %>
-              <li class="list-group-item">
-                <p><strong><%= review.description %></strong></p>
-                <p>Rating: <%= '*' * review.rating %></p>
-                <p>- <%= review.booking.user.first_name %></p>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
+        </ul>
       </div>
     </div>
+  </div>
+</div>
 
 
 

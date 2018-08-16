@@ -21,6 +21,10 @@ class BookingPolicy < ApplicationPolicy
     user == record.user
   end
 
+  def destroy?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.all

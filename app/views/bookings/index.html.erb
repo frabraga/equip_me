@@ -22,7 +22,7 @@
         <p><strong><%= booking.start_date.strftime("%d-%m-%Y") %> | <%= booking.end_date.strftime("%d-%m-%Y") %></strong></p>
       </div>
       <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
-      <a class="card-link" href="#" ></a>
+       <%= link_to booking.user_id, equipment_booking_path(booking.equipment, booking), class: "card-link" %>
     </div>
     </div>
     <% end %>

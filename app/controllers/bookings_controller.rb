@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    @equipment = Equipment.find_by(id: params[:id])
     authorize @booking
   end
 
@@ -26,6 +27,13 @@ class BookingsController < ApplicationController
       render :new
     end
   end
+
+    def destroy
+      @booking = Booking.find(params[:id])
+      authorize @booking
+      @booking.destroy
+      redirect_to bookings_path
+    end
 
   private
 
