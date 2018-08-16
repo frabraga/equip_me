@@ -1,3 +1,4 @@
+<div class="container_form">
 <h3 class="booking-title">Book Now</h3>
 
 <%= simple_form_for [@equipment, @booking] do |f| %>
@@ -11,5 +12,6 @@
 
   <div class="form-actions">
     <%= f.button :submit, :class => "btn btn-primary" %>
+  </div>
   </div>
 <% end %>
