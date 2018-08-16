@@ -10,12 +10,14 @@ puts "adding all fucks"
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: Faker::Address.street_address,
+    address: Faker::Address.full_address,
     email: Faker::Internet.email,
     password: "123456"
   )
   user.save!
 end
+
+User.create(email: "user@user.com", password: "123456", first_name: "Francisco", last_name: "Braga", address: "WeWork Ipanema")
 
 photos = [
 "https://res.cloudinary.com/djjncf5oe/image/upload/v1534344769/a7hattlipiddwumpfb24.jpg",
@@ -83,12 +85,12 @@ stuff = [
 "paddle board"
 ]
 
-10.times do
+20.times do
   equipment = Equipment.new(
     name: stuff.sample,
     description: Faker::Lorem.paragraph_by_chars(256, false),
     price: rand(50..500),
-    user_id: rand(1..10),
+    user_id: rand(1..11),
     category: sports.sample,
     remote_photo_url: photos.sample
   )
@@ -97,8 +99,8 @@ end
 
 15.times do
   booking = Booking.new(
-    user_id: rand(1..10),
-    equipment_id: rand(1..10),
+    user_id: rand(1..11),
+    equipment_id: rand(1..20),
     start_date: Faker::Date.between(2.days.ago, Date.today),
     end_date: Faker::Date.forward(rand(5..23))
   )

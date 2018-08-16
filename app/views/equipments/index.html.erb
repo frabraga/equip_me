@@ -1,5 +1,10 @@
 <%= render 'shared/banner' %>
 <%= render 'shared/card', @equipment %>
 
-
+<div
+  id="map"
+  style="width: 100%;
+  height: 300px;"
+  data-markers="<%= @markers.to_json %>"
+></div>
 

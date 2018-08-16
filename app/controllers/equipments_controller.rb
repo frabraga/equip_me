@@ -9,6 +9,13 @@ class EquipmentsController < ApplicationController
       @equipments = Equipment.all
     end
 
+    @markers = @equipments.map do |equipment|
+      {
+        lat: equipment.user.latitude,
+        lng: equipment.user.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
     #@equipments = policy_scope(Equipment).order(created_at: :desc)
     #@equipments = EquipmentPolicy::Scope.new(current_user, Equipment).abc(params[:query])
   end
