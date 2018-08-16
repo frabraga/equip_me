@@ -1,6 +1,6 @@
 class EquipmentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_equipment, only: [:show, :edit, :destroy]
+  before_action :set_equipment, only: [:show, :destroy]
 
   def index
     if params[:query].present?
@@ -40,9 +40,13 @@ class EquipmentsController < ApplicationController
   end
 
   def edit
+    @equipment = Equipment.find_by(id: params[:id])
   end
 
   def update
+    @equipment = Equipment.find_by(id: params[:id])
+    @equipment.update(equipment_params)
+    redirect_to equipment_path
   end
 
   def destroy
