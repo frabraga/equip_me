@@ -7,7 +7,9 @@
           <h3 class="equip-name"><%= @equipment.name %></h3>
           <p><%= @equipment.description %></p>
           <p>$<%= @equipment.price %> per day</p>
-          <% if @equipment.user_id == current_user.id %>
+          <% if current_user.nil? %>
+
+          <% elsif @equipment.user_id == current_user.id %>
           <div class="link">
             <%= link_to "Delete this equipment", equipment_path,
             method: :delete,
@@ -17,7 +19,7 @@
         </div>
         <div class="row">
           <div class="col-xs-12 col-md-6">
-            <%= render './bookings/form', equipment: [@equipment, @booking] unless @equipment.user_id == current_user.id %>
+            <%= render './bookings/form', equipment: [@equipment, @booking] unless current_user.nil? || @equipment.user_id == current_user.id %>
           </div>
           <div class="col-xs-12 col-md-6">
             <ul class="list-group">
