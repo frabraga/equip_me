@@ -40,6 +40,9 @@ class EquipmentsController < ApplicationController
   end
 
   def destroy
+    authorize @equipment
+    @equipment.destroy
+    redirect_to list_equipments_path
   end
 
   private
