@@ -3,13 +3,16 @@
     <h1>Equip your trip</h1>
     <p>Fun, only a few clicks away</p>
     <%= form_tag root_path, method: :get do %>
-      <%= text_field_tag :query,
+      <div class="form-inline">
+        <%= text_field_tag :query,
         params[:query],
-        class: "form-control",
+        class: "form-control input-md",
+        style: "font-weight: lighter; font-family: Roboto;",
         placeholder: "Find an equipment"
       %>
-      <%= submit_tag("Search", class: "btn btn-lg btn-primary", id: "btn") %>
+      <%= submit_tag("Search", class: "btn btn-md btn-primary", style: "font-family: Roboto;", id: "btn") %>
     <% end %>
+      </div>
     <!-- <a class="btn btn-primary btn-lg">Future search bar</a> -->
   </div>
 </div>
