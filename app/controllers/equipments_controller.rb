@@ -4,6 +4,27 @@ class EquipmentsController < ApplicationController
 
   def index
     @equipments = Equipment.all
+    # @equipments.ratings
+    # @rating_by_equip = {}
+    # @equipments.each do |eq|
+    #   count = 0
+    #   @rating_by_equip[eq.id] ||= 0
+    #   eq.bookings.each do |b|
+    #     b.reviews.each do |r|
+    #       @rating_by_equip[eq.id] += r.rating
+    #       count += 1
+
+    #       # @rating_by_equip[eq.id] ||= {}
+    #       # @rating_by_equip[eq.id][:rating] ||= 0
+    #       # @rating_by_equip[eq.id][:rating] += 1
+
+    #       # @rating_by_equip[eq.id][:count] ||= 0
+    #       # @rating_by_equip[eq.id][:count] += 1
+
+    #     end
+    #   end
+    #   @rating_by_equip[eq.id] / count unless count == 0
+    # end
     @equipments = policy_scope(Equipment).order(created_at: :desc)
   end
 
