@@ -1,0 +1,11 @@
+<%= form_tag search_equipments_path, remote: true, method: :get do %>
+      <div class="form-inline">
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control input-md",
+        style: "font-weight: lighter; font-family: Roboto;",
+        placeholder: "Find equipment"
+      %>
+      <%= submit_tag("Search", class: "btn btn-md btn-primary", style: "font-family: Roboto;", id: "btn") %>
+      </div>
+     <% end %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :equipments do
     collection do
       get 'list'
+      get 'search'
     end
     resources :bookings, only: [:new, :create, :show]
   end

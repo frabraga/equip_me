@@ -13,8 +13,8 @@ class Equipment < ApplicationRecord
 
 
   algoliasearch do
-    attribute :name, :description, :category
-    searchableAttributes ['name', 'unordered(description)']
+    attribute :name, :category
+    searchableAttributes ['name', 'category']
     customRanking ['desc(likes_count)']
   end
 
@@ -29,5 +29,13 @@ class Equipment < ApplicationRecord
     end
     rating = rating / count unless count == 0
     return rating
+  end
+
+  def marker
+    {
+      lat: user.latitude,
+      lng: user.longitude#,
+      # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+    }
   end
 end
