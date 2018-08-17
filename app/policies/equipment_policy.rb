@@ -1,7 +1,4 @@
 class EquipmentPolicy < ApplicationPolicy
-  def index?
-    true
-  end
 
   def show?
     true
@@ -20,6 +17,10 @@ class EquipmentPolicy < ApplicationPolicy
   end
 
   def destroy?
+    true
+  end
+
+  def search?
     true
   end
 
