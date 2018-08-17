@@ -1,50 +1,44 @@
 <div class="container">
+  <h1 class="booking_details text-center"><%= @equipment.name.capitalize %> - by <%= @equipment.user.first_name %></h1>
   <div class="row">
     <div class="col-xs-12 col-md-6" id="firstcol">
-      <img src="<%= cl_image_path @equipment.photo, crop: :fill %>" alt="" width="350px" class="img-show">
-    </div>
-    <div class="col-xs-12 col-md-6" id="secondcol">
-      <h3 class="equip-name"><%= @equipment.name.capitalize %></h3>
-      <p><%= @equipment.description %></p>
-      <p>€<%= @equipment.price %> per day</p>
+      <img src="<%= cl_image_path @equipment.photo, crop: :fill %>" alt="" width="400px" height="200" class="img-show">
+      <br>
+      <br>
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x200&sensor=false&maptype=roadmap&markers=color:red|#{@equipment.user.address}&key=#{ENV['GOOGLE_API_BROWSER_KEY']}&style=feature:administrative|element:labels.text.fill|color:0x444444&style=feature:landscape|element:all|color:0xf2f2f2&style=feature:landscape.man_made|element:geometry.fill|color:0xff0000|visibility:off&style=feature:landscape.natural.landcover|element:geometry.fill|color:0xff0000|visibility:off&style=feature:poi|element:all|visibility:off&style=feature:road|element:all|saturation:-100|lightness:45&style=feature:road.highway|element:all|visibility:simplified&style=feature:road.highway|element:geometry.fill|color:0xea9f1f|saturation:52|lightness:0&style=feature:road.arterial|element:labels.icon|visibility:off&style=feature:transit|element:all|visibility:off&style=feature:water|element:all|color:#469AE0|visibility:on&style=feature:water|element:geometry.fill|color:#469AE0", class: "static-map" %>
+      <br>
+      <br>
       <% if current_user.nil? %>
-
       <% elsif @equipment.user_id == current_user.id %>
       <div class="link">
         <%= link_to "Edit this equipment", edit_equipment_path,
-        method: :get,
-        data: { confirm: "Are you sure?" }, class:"btn btn-warning" %>
+        method: :get, class:"btn btn-warning" %>
+        <% end %>
       </div>
-      <% end %>
       <br>
       <% if current_user.nil? %>
-
       <% elsif @equipment.user_id == current_user.id %>
       <div class="link">
         <%= link_to "Delete this equipment", equipment_path,
         method: :delete,
         data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
-      </div>
       <% end %>
+      </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&sensor=false&maptype=roadmap&markers=color:red|#{@equipment.user.address}&key=#{ENV['GOOGLE_API_BROWSER_KEY']}&style=feature:administrative|element:labels.text.fill|color:0x444444&style=feature:landscape|element:all|color:0xf2f2f2&style=feature:landscape.man_made|element:geometry.fill|color:0xff0000|visibility:off&style=feature:landscape.natural.landcover|element:geometry.fill|color:0xff0000|visibility:off&style=feature:poi|element:all|visibility:off&style=feature:road|element:all|saturation:-100|lightness:45&style=feature:road.highway|element:all|visibility:simplified&style=feature:road.highway|element:geometry.fill|color:0xea9f1f|saturation:52|lightness:0&style=feature:road.arterial|element:labels.icon|visibility:off&style=feature:transit|element:all|visibility:off&style=feature:water|element:all|color:#469AE0|visibility:on&style=feature:water|element:geometry.fill|color:#469AE0", class: "static-map" %>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <%= render './bookings/form', equipment: [@equipment, @booking] unless current_user.nil? || @equipment.user_id == current_user.id %>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <ul class="list-group">
+    <div class="col-xs-12 col-md-6 details_content" id="secondcol">
+      <br>
+      <p><%= @equipment.description %></p>
+      <p><strong>€<%= @equipment.price %> per day</strong></p>
+      <%= render './bookings/form', equipment: [@equipment, @booking] unless current_user.nil? || @equipment.user_id == current_user.id %>
+        <ul class="list-group container_form">
           <% @equipment.reviews.each do |review| %>
-          <li class="list-group-item">
+          <li class="list-group-item details_content">
             <p><strong><%= review.description %></strong></p>
             <p>Rating: <%= '*' * review.rating %></p>
             <p>- <%= review.booking.user.first_name %></p>
           </li>
           <% end %>
         </ul>
-      </div>
     </div>
   </div>
 </div>

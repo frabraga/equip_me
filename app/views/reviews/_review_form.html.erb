@@ -5,7 +5,7 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
+  <div class="form-inputs" style="width: 90%; font-family: roboto; color: #469AE0;">
     <%= f.input :description, as: :text, html5: true %>
     <%= f.input :rating, as: :integer, html5: true %>
   </div>

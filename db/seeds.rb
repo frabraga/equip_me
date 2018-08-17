@@ -136,7 +136,7 @@ end
 
 30.times do
   review = Review.new(
-    description: Faker::Lorem.paragraph_by_chars(80, false),
+    description: Faker::FamousLastWords.last_words,
     rating: rand(0..5),
     booking_id: rand(1..15)
   )
