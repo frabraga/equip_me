@@ -1,7 +1,11 @@
 function displaySearch(searchHTML) {
+  document.querySelector(".title h1").innerHTML = "Top Results"
   cards = document.querySelector(".fix-margin")
   cards.innerHTML = ""
   cards.innerHTML = searchHTML
+
+  document.map.removeMarkers()
+  document.map.addMarkers(<%= @markers.to_json.html_safe %>)
 }
 
 displaySearch('<%= j render "search", equipments: @equipments %>')

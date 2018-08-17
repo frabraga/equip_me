@@ -8,7 +8,7 @@ class EquipmentsController < ApplicationController
     else
       @equipments = Equipment.all
     end
-    @markers = markers
+    @markers = @equipments.map(&:marker)
   end
 
   def show
@@ -34,7 +34,7 @@ class EquipmentsController < ApplicationController
 
   def search
     @equipments = policy_scope(Equipment).order(created_at: :desc).search(params[:query])
-    @markers = markers
+    @markers = @equipments.map(&:marker)
 
     respond_to do |format|
       format.html
@@ -71,15 +71,7 @@ class EquipmentsController < ApplicationController
 
   private
 
-  def markers
-    @equipments.map do |equipment|
-      {
-        lat: equipment.user.latitude,
-        lng: equipment.user.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
-    end
-  end
+
 
   def set_equipment
     @equipment = Equipment.find(params[:id])
