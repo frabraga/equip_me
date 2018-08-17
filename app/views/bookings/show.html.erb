@@ -13,7 +13,7 @@
         <div class="link">
           <%= link_to "Delete this booking", booking_path,
           method: :delete,
-          data: { confirm: "Are you sure?" } %>
+          data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
         </div>
         <div class="reviewform">
           <%= render '/reviews/review_form', booking: [@booking, @review] %>
