@@ -1,1 +1,8 @@
+function displaySearch(searchHTML) {
+  cards = document.querySelector(".fix-margin")
+  cards.innerHTML = ""
+  cards.innerHTML = searchHTML
+}
+
+displaySearch('<%= j render "search", equipments: @equipments %>')
 window.smoothscroll(document.querySelector('.title'))
