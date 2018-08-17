@@ -1,5 +1,5 @@
 class EquipmentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :search]
   before_action :set_equipment, only: [:show, :destroy]
 
   def index
@@ -8,16 +8,7 @@ class EquipmentsController < ApplicationController
     else
       @equipments = Equipment.all
     end
-
-    @markers = @equipments.map do |equipment|
-      {
-        lat: equipment.user.latitude,
-        lng: equipment.user.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
-    end
-    #@equipments = policy_scope(Equipment).order(created_at: :desc)
-    #@equipments = EquipmentPolicy::Scope.new(current_user, Equipment).abc(params[:query])
+    @markers = markers
   end
 
   def show
@@ -38,6 +29,16 @@ class EquipmentsController < ApplicationController
       redirect_to @equipment
     else
       render :new
+    end
+  end
+
+  def search
+    @equipments = policy_scope(Equipment).order(created_at: :desc).search(params[:query])
+    @markers = markers
+
+    respond_to do |format|
+      format.html
+      format.js  # <-- will render `app/views/reviews/create.js.erb`
     end
   end
 
@@ -69,6 +70,16 @@ class EquipmentsController < ApplicationController
   end
 
   private
+
+  def markers
+    @equipments.map do |equipment|
+      {
+        lat: equipment.user.latitude,
+        lng: equipment.user.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
+  end
 
   def set_equipment
     @equipment = Equipment.find(params[:id])
