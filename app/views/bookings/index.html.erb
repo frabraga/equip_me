@@ -1,32 +1,55 @@
 <div class="container">
-  <h1 class="text-center">Your Bookings</h1>
+  <h1 class="text-center">My Bookings</h1>
   <div class="row extra-space">
     <% @bookings.each do |booking| %>
     <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path(booking.equipment.photo) %>);">
-      <div class="card-category"><%= booking.equipment.name %>
-        <br>
-        <% rating = 0 %>
-        <% count = 0 %>
-        <% booking.reviews.each do |r| %>
+        <div class="card-category"><%= booking.equipment.name %>
+          <br>
+          <% rating = 0 %>
+          <% count = 0 %>
+          <% booking.reviews.each do |r| %>
           <% rating += r.rating %>
           <% count += 1 %>
-        <% end %>
-        <% rating = rating / count unless count == 0 %>
-        <%= '*' * rating %>
+          <% end %>
+          <% rating = rating / count unless count == 0 %>
+          <%= '*' * rating %>
+        </div>
+        <div class="card-category">
+        </div>
+        <div class="card-description">
+          <h2>Full price: €<%= booking.equipment.price * (booking.end_date.day - booking.start_date.day) %> (€<%= booking.equipment.price %>/day)</h2>
+          <p><strong><%= booking.start_date.strftime("%d-%m-%Y") %> | <%= booking.end_date.strftime("%d-%m-%Y") %></strong></p>
+        </div>
+        <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
+        <%= link_to booking.user_id, equipment_booking_path(booking.equipment, booking), class: "card-link" %>
       </div>
-      <div class="card-category">
-      </div>
-      <div class="card-description">
-        <h2>Full price: €<%= booking.equipment.price * (booking.end_date.day - booking.start_date.day) %> (€<%= booking.equipment.price %>/day)</h2>
-        <p><strong><%= booking.start_date.strftime("%d-%m-%Y") %> | <%= booking.end_date.strftime("%d-%m-%Y") %></strong></p>
-      </div>
-      <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
-       <%= link_to booking.user_id, equipment_booking_path(booking.equipment, booking), class: "card-link" %>
-    </div>
     </div>
     <% end %>
   </div>
 </div>
-  <div class="bottom_container">
+<div class="bottom_container">
+  <h2 class="manage">Manage Your Bookings</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="content_container">
+          <img class="icon1" src="https://res.cloudinary.com/djjncf5oe/image/upload/v1534519222/jfgn9gmzueihhyog3yv4.png" alt="">
+          <h3 class="icon_text">View details</h3>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="content_container">
+          <img class="icon1" src="https://res.cloudinary.com/djjncf5oe/image/upload/v1534519478/bqpkewlgf1fb7pzoym7f.png" alt="">
+          <h3 class="icon_text">Add review</h3>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="content_container">
+          <img class="icon1" src="https://res.cloudinary.com/djjncf5oe/image/upload/v1534519487/btqv1okj5vte0kukoiqh.png" alt="">
+          <h3 class="icon_text">Cancel booking</h3>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
