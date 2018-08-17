@@ -11,18 +11,19 @@
 
       <% elsif @equipment.user_id == current_user.id %>
       <div class="link">
-        <%= link_to "Delete this equipment", equipment_path,
-        method: :delete,
-        data: { confirm: "Are you sure?" } %>
+        <%= link_to "Edit this equipment", edit_equipment_path,
+        method: :get,
+        data: { confirm: "Are you sure?" }, class:"btn btn-warning" %>
       </div>
       <% end %>
+      <br>
       <% if current_user.nil? %>
 
       <% elsif @equipment.user_id == current_user.id %>
       <div class="link">
-        <%= link_to "Edit this equipment", edit_equipment_path,
-        method: :get,
-        data: { confirm: "Are you sure?" } %>
+        <%= link_to "Delete this equipment", equipment_path,
+        method: :delete,
+        data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
       </div>
       <% end %>
     </div>
