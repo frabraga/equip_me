@@ -6,101 +6,128 @@ Review.destroy_all
 
 puts "adding all fucks"
 
+addresses = [
+"WeWork Ipanema",
+"Blue Agave Ipanema",
+"Posto 10, Rio",
+"posto 9, Rio",
+"Posto 8, Rio",
+"Shopping Leblon, Rio",
+"Jockey Club Brasileiro, Gavea",
+"Cristo Redenter, Rio",
+"Praca do Lido, Copacabana",
+"Copacabana Palace",
+"lagoa rodrigo de freitas"
+]
+count = 0
 10.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: Faker::Address.full_address,
+    address: addresses[count],
     email: Faker::Internet.email,
     password: "123456"
   )
   user.save!
+  count += 1
 end
 
 User.create(email: "user@user.com", password: "123456", first_name: "Francisco", last_name: "Braga", address: "WeWork Ipanema")
 
 photos = [
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344769/a7hattlipiddwumpfb24.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344770/kdxeuqi4tcn2hc0osh3e.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344773/kadlhcphio3ahb37dchj.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344765/xymyzcskkwxzgyyox4lt.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344771/r8alcq7cuo6q6bw43uk0.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344767/thkyz9qla9crse8owrvz.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344764/fyodsdxat0xxlho0khvd.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344761/bm26blws9hzp2m4vtcde.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344754/pvxgkbqzfhf14gplcke1.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344759/k3gqyzdl5uzrxmaogqrg.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344740/epgflc09ibmkokphv1g8.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344739/jz5jzup3wp2ws5cebp4u.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344735/d1agib7oiwpd8kjgpjid.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344746/bpopov3xzaidk77myo3q.jpg",
-"https://res.cloudinary.com/djjncf5oe/image/upload/v1534344731/mgxhkie9neavspdjvm5k.jpg"
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534517050/dk2ytlf3hdrmsjwftjic.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534367299/awdlytiryivaehkuz58f.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534367951/vqvynkozgrhqwizc1kbg.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534367124/lhzv7ue7tyhdfzqtl8cl.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534367072/vhfvpfhpwkxog3q4jgwk.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534366891/ljigbtbr3hk5mw4fr3ww.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534365130/avpgrstibxgzlipzfpig.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534365106/aopkngewojvwsjnziwqg.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534365064/lwavycjtv71lwbayaccu.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534365031/c5gc1ajvxxm4i0byth9z.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534364915/sjevtuc10hy5teqxelke.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534364849/qoiwpizphroxjxs1x79t.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534445522/z3th1jdlkbdluwcncw8a.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534517350/ty0tizwjaec3cprgtcma.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534517221/bniacnydga9khw8uq9qu.jpg",
+"https://res.cloudinary.com/djjncf5oe/image/upload/v1534517126/jjlxxlqedox4gq1cv4rm.png"
 ]
 
 sports = [
-"kite surfing",
-"wake boarding",
-"snow boarding",
+"Flying squirl",
+"lugeing",
 "skiing",
-"surfing",
-"football",
-"baseball",
-"golf",
-"water polo",
-"real polo",
-"paragliding",
-"luging",
 "horseing around",
-"cricket",
-"croquet",
-"conkers",
+"golf",
+"snowboarding",
+"skiing",
+"boating",
+"kitesurfing",
+"boating",
+"baseball",
+"wakeboarding",
+"surfing",
 "tennis",
-"ping pong",
-"badminton",
-"basketball",
-"hockey"
+"cricket",
+"boating"
 ]
 
 stuff = [
-"bat",
-"skis",
-"racket",
-"armour",
-"horse",
-"boat",
-"oars",
-"snowboard",
-"skateboard",
-"kite",
-"ball",
-"baseball",
-"basketball",
-"shuttlecock",
-"ping pong ball",
-"jacket",
-"pants",
 "wingsuit",
-"clubs",
-"canoe",
-"paddle board"
+"luge",
+"skiing set",
+"my dumb horse",
+"golf club set",
+"snowboard",
+"skis",
+"oars",
+"kitesurf",
+"boat",
+"baseball bat",
+"wakeboard",
+"surf",
+"tennis rackets",
+"cricket bats",
+"canoe"
 ]
 
-20.times do
+descriptions = [
+"Fly around like a squirl. Just don't crash or hit anything. Otherwise you're probably dead. ...so good luck! I have yet to have a repeat customer..",
+"..honestly i don't know how you use this just randomly..but why not rent it out and make bank?",
+"for skiing and other snowy fun.",
+"play real polo, with a real horse. ssssuuuuuppppp. Bojack Horseman!",
+"for anyone like myself who plays a useless 'sport'...when something else in life stops working, you take up golf. am i right??",
+"a board that you can snow on...i mean ski...i mean..snowboard? the fuck? cheapest way to break your legs.",
+"for skiing and other snowy fun.",
+"beautiful oars. for pushing yourself around in the water. if you have some sort of boat, dingy, float, board. otherwise it's just good for hitting people or yourself. or working out bro.",
+"kitesurfing brah. just the coolest, damnest thing on the planet. right steve?",
+"You get to sing the Lonely Island song 'I'm on a boat'. So dope it's woke.",
+"You can hit balls. Hit people. Just hit hit hit hit. ..swing away!",
+"awesome wakeboard brah, you will truly love it. made me sooo happy. and everyone sooo happy. aiiight",
+"surfing is just too cool for school. unless of course you can't. ..then you just suck brah",
+"for all those people who like to go to rich person 'clubs'. know what i mean?",
+"cricket...the sport for souls of the damned. the baseball of the commonwealth.",
+"a canoe. you can have your own Deliverance experience. Also, the canoe comes with the dog."
+]
+
+count = 0
+15.times do
   equipment = Equipment.new(
-    name: stuff.sample,
-    description: Faker::Lorem.paragraph_by_chars(256, false),
+    name: stuff[count],
+    description: descriptions[count],
     price: rand(50..500),
     user_id: rand(1..11),
-    category: sports.sample,
-    remote_photo_url: photos.sample
+    category: sports[count],
+    remote_photo_url: photos[count]
   )
   equipment.save!
+  count += 1
 end
 
 15.times do
   booking = Booking.new(
     user_id: rand(1..11),
-    equipment_id: rand(1..20),
+    equipment_id: rand(1..15),
     start_date: Faker::Date.between(2.days.ago, Date.today),
     end_date: Faker::Date.forward(rand(5..23))
   )
